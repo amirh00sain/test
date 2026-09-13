@@ -1,11 +1,8 @@
 package com.spider.vpn.data.model
 
-import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
 @Entity(tableName = "sessions")
 data class Session(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
@@ -13,7 +10,7 @@ data class Session(
     val domain: String,
     val apiKey: String = "",
     val createdAt: Long = System.currentTimeMillis()
-) : Parcelable
+)
 
 @Entity(tableName = "subscriptions")
 data class Subscription(
@@ -41,7 +38,7 @@ data class Config(
     val address: String = "",
     val remark: String = "",
     val rawConfig: String = ""
-) : Parcelable
+)
 
 @Entity(tableName = "chat_messages")
 data class ChatMessage(
