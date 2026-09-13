@@ -28,6 +28,10 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.layout.onGloballyPositioned
+import kotlin.math.sin
+import kotlin.math.cos
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.spider.vpn.data.repository.Repository
