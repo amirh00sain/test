@@ -20,6 +20,7 @@ app/build/
 # Local config
 local.properties
 *.properties
+!gradle.properties
 !gradle-wrapper.properties
 
 # IDE
