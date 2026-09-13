@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="spider_red">#D62828</color>
+    <color name="spider_dark_red">#9B111E</color>
+    <color name="spider_light_red">#FF4A4A</color>
+    <color name="spider_deep_red">#7F1111</color>
+    <color name="bg_dark">#0A0A0F</color>
+    <color name="bg_card">#1A1A2E</color>
+    <color name="glass_bg">#1AFFFFFF</color>
+    <color name="glass_stroke">#33FFFFFF</color>
+    <color name="text_primary">#FFFFFFFF</color>
+    <color name="text_secondary">#99FFFFFF</color>
+    <color name="accent_green">#00E676</color>
+    <color name="accent_blue">#448AFF</color>
+</resources>

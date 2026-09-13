@@ -1,0 +1,86 @@
+name: Build APK
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Extract xray binary from assets
+        run: |
+          mkdir -p app/src/main/assets
+          if [ -f "Xray-android-arm64-v8a.zip" ]; then
+            unzip -o Xray-android-arm64-v8a.zip -d /tmp/xray-extract
+            find /tmp/xray-extract -name "xray" -type f | head -1 | xargs -I{} cp {} app/src/main/assets/xray
+            chmod +x app/src/main/assets/xray
+            echo "xray binary extracted successfully"
+          else
+            echo "xray zip not found, downloading latest release..."
+            curl -sL "https://github.com/XTLS/Xray-core/releases/latest/download/Xray-android-arm64-v8a.zip" -o /tmp/xray.zip
+            unzip -o /tmp/xray.zip -d /tmp/xray-extract
+            find /tmp/xray-extract -name "xray" -type f | head -1 | xargs -I{} cp {} app/src/main/assets/xray
+            chmod +x app/src/main/assets/xray
+          fi
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug --no-daemon
+
+      - name: Build Release APK
+        run: ./gradlew assembleRelease --no-daemon
+
+      - name: Copy APKs
+        run: |
+          mkdir -p build-output
+          cp app/build/outputs/apk/debug/app-debug.apk build-output/SpiderVPN-debug.apk || true
+          cp app/build/outputs/apk/release/app-release-unsigned.apk build-output/SpiderVPN-release.apk || true
+          ls -la build-output/
+
+      - name: Upload Debug Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SpiderVPN-debug
+          path: build-output/SpiderVPN-debug.apk
+          retention-days: 30
+
+      - name: Upload Release Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SpiderVPN-release
+          path: build-output/SpiderVPN-release.apk
+          retention-days: 30
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            build-output/SpiderVPN-debug.apk
+            build-output/SpiderVPN-release.apk
+          generate_release_notes: true
+          draft: false
+          prerelease: false

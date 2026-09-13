@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Spider VPN</string>
+    <string name="tab_panel">Panel</string>
+    <string name="tab_client">Client</string>
+    <string name="tab_ai">AI</string>
+    <string name="tab_settings">Settings</string>
+    <string name="get_tokens">Get Tokens</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="connect">Connect</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="sub_connect">Connect</string>
+    <string name="sub_subs">Subs</string>
+    <string name="add_sub">Add Subscription</string>
+    <string name="scan_qr">Scan QR Code</string>
+    <string name="paste_clipboard">Paste from Clipboard</string>
+    <string name="dns_settings">DNS</string>
+    <string name="google_dns">Google</string>
+    <string name="cloudflare_dns">Cloudflare</string>
+    <string name="custom_dns">Custom</string>
+    <string name="speed_test">Speed Test</string>
+    <string name="ai_setup">AI Setup</string>
+    <string name="api_url">API URL</string>
+    <string name="api_key">API Key</string>
+    <string name="model_name">Model Name</string>
+    <string name="update">Update</string>
+    <string name="support">Support</string>
+    <string name="railway_token">Railway Token</string>
+    <string name="spider_token">Spider Token</string>
+    <string name="sessions">Sessions</string>
+    <string name="profile">Profile</string>
+    <string name="server">Server</string>
+    <string name="sni">SNI</string>
+    <string name="security">Security</string>
+    <string name="fingerprint">Fingerprint</string>
+    <string name="fragment">Fragment</string>
+    <string name="send_message">Type a message...</string>
+</resources>
