@@ -64,8 +64,9 @@ fun PanelScreen() {
         label = "contentAlpha"
     )
 
-    if (showWebView) {
-        WebViewActivity.start(context, showWebView!!.domain, showWebView!!.apiKey)
+    if (showWebView != null) {
+        val webViewSession = showWebView!!
+        WebViewActivity.start(context, webViewSession.domain, webViewSession.apiKey)
         showWebView = null
     }
 

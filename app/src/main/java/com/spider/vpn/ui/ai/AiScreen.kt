@@ -178,11 +178,10 @@ fun AiScreen() {
 fun MessageBubble(message: ChatMessage) {
     val isUser = message.role == "user"
     val bgColor = if (isUser) SpiderRed.copy(alpha = 0.2f) else BgCard.copy(alpha = 0.8f)
-    val align = if (isUser) Alignment.CenterEnd else Alignment.CenterStart
 
     Column(
         modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = align
+        horizontalAlignment = if (isUser) Alignment.CenterHorizontally else Alignment.Start
     ) {
         // File indicator
         message.filePath?.let { path ->

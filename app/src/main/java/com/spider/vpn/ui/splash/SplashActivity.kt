@@ -49,18 +49,20 @@ class SplashActivity : ComponentActivity() {
 fun SplashScreen(onFinished: () -> Unit) {
     val infiniteTransition = rememberInfiniteTransition(label = "splash")
 
-    // Spider logo scale animation
-    val logoScale by infiniteTransition.animateFloat(
-        initialValue = 0.3f,
-        targetValue = 1f,
+    // Spider logo scale animation - animate once on start
+    var logoScaleTarget by remember { mutableFloatStateOf(0.3f) }
+    LaunchedEffect(Unit) { logoScaleTarget = 1f }
+    val logoScale by animateFloatAsState(
+        targetValue = logoScaleTarget,
         animationSpec = tween(1200, easing = FastOutSlowInEasing),
         label = "logoScale"
     )
 
-    // Logo opacity
-    val logoAlpha by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1f,
+    // Logo opacity - animate once
+    var logoAlphaTarget by remember { mutableFloatStateOf(0f) }
+    LaunchedEffect(Unit) { logoAlphaTarget = 1f }
+    val logoAlpha by animateFloatAsState(
+        targetValue = logoAlphaTarget,
         animationSpec = tween(800, easing = FastOutSlowInEasing),
         label = "logoAlpha"
     )
