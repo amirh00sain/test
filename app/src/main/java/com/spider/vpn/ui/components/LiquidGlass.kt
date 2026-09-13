@@ -218,18 +218,29 @@ fun GlassTextField(
     )
 }
 
-@androidx.compose.material3.OptIn(annotation = androidx.compose.material3.ExperimentalMaterial3Api::class)
 @Composable
 fun GlassDialog(
     onDismiss: () -> Unit,
     content: @Composable () -> Unit
 ) {
-    androidx.compose.material3.BasicAlertDialog(
-        onDismissRequest = onDismiss,
-        modifier = androidx.compose.ui.Modifier
-            .clip(RoundedCornerShape(24.dp))
-            .background(BgCard.copy(alpha = 0.95f))
-            .padding(24.dp),
-        content = content
-    )
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Black.copy(alpha = 0.5f))
+            .clickable { onDismiss() },
+        contentAlignment = androidx.compose.ui.Alignment.Center
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth(0.85f)
+                .clip(RoundedCornerShape(24.dp))
+                .background(BgCard.copy(alpha = 0.95f))
+                .border(1.dp, GlassStroke.copy(alpha = 0.2f), RoundedCornerShape(24.dp))
+                .clickable(enabled = false, onClick = {})
+                .padding(24.dp),
+            contentAlignment = androidx.compose.ui.Alignment.Center
+        ) {
+            content()
+        }
+    }
 }
