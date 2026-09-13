@@ -191,7 +191,7 @@ fun SplashScreen(onFinished: () -> Unit) {
                 .size(220.dp)
                 .scale(glowScale)
         ) {
-            rotate(ringRotation, center = Offset(size.width / 2, size.height / 2)) {
+            rotate(ringRotation, pivot = Offset(size.width / 2, size.height / 2)) {
                 drawArc(
                     brush = Brush.sweepGradient(
                         colors = listOf(
@@ -217,7 +217,7 @@ fun SplashScreen(onFinished: () -> Unit) {
                 .size(200.dp)
                 .scale(glowScale)
         ) {
-            rotate(-ringRotation * 0.6f, center = Offset(size.width / 2, size.height / 2)) {
+            rotate(-ringRotation * 0.6f, pivot = Offset(size.width / 2, size.height / 2)) {
                 drawArc(
                     brush = Brush.sweepGradient(
                         colors = listOf(
